@@ -1,0 +1,4 @@
+[flake8]
+max-line-length = 100
+extend-ignore = E203
+exclude = facebookscraper.py,twitterscraper.py,redditscraper.py,quorascraper.py,mainfile.py,databasewrite.py,email_sender.py,sentiment.py
