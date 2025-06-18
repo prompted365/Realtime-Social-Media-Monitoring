@@ -66,19 +66,11 @@ The purpose of this project is to provide users with real-time sentiment analysi
 
 ## How it Works
 
-1. Run `mainfile.py`, which imports all modules and runs four threads in parallel to scrape data from Reddit, Quora, Facebook, and Twitter.
+1. Run `python main.py <query>` to launch the orchestrator. Agents are loaded automatically from the `agents/` package and executed concurrently.
 
-2. Enter the brand name or topic you want to search for.
+2. Use the `--limit` flag to control the number of posts scraped per agent. Results are written to the SQLite database defined by `SOCIAL_DB_PATH` (defaults to `social_media.db`).
 
-3. Provide the email address to receive sentiment analysis results.
-
-4. The process may take some time depending on the number of posts to be scraped.
-
-5. Data is stored in the `social_media.db` database and corresponding tables.
-
-6. After calculating the sentiment score, an email is sent detailing the positive and negative comments or posts.
-
-7. For text sentiment analysis, a machine learning model is used.
+3. Sentiment analysis is performed via the analytics pipeline and stored alongside raw posts.
 
 ## Interface
 
@@ -87,3 +79,12 @@ Command Line Interface (CLI) - Can be implemented in GUI or Web-based interfaces
 ## Additional Information
 
 - Sentiment Analysis Model: [Transformers documentation](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english)
+
+## Testing & Quality
+
+Run `flake8` followed by `pytest` before committing changes:
+
+```bash
+flake8
+pytest
+```
