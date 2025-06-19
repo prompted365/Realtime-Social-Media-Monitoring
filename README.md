@@ -65,9 +65,14 @@ The purpose of this project is to provide users with real-time sentiment analysi
     - Storage: SQLite3 database
     - API: No external API used
 
+Legacy versions of these scrapers previously lived as standalone modules.
+They are now archived under `legacy/` since the new agent implementations in
+`agents/` supersede them.
+
 ## How it Works
 
 1. Run `python main.py <query>` to launch the orchestrator. Agents are loaded automatically from the `agents/` package and executed concurrently.
+   The previous `mainfile.py` entry point has been moved to `legacy/`.
 
 2. Use the `--limit` flag to control the number of posts scraped per agent. Results are written to the SQLite database defined by `SOCIAL_DB_PATH` (defaults to `social_media.db`).
 
