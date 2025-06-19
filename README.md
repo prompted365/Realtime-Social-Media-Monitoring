@@ -11,7 +11,8 @@ The purpose of this project is to provide users with real-time sentiment analysi
 ## Prerequisites
 
 - **Programming Languages**: Python
-- **Libraries**: transformers, playwright, sqlite3, pandas, smtlib, etc. (refer to Requirements.txt)
+- **Libraries**: see `requirements.txt` for the core set (`pandas`, `playwright`, etc.).
+  The `transformers` package is optional for full sentiment analysis.
 - **Web Scraping Knowledge**: Playwright
 - **Virtual Environment**: Optional
 - **Python Version**: 3.9+
@@ -97,6 +98,16 @@ Run `flake8` followed by `pytest` before committing changes:
 flake8
 pytest
 ```
+
+## Optional Extras
+
+The following packages enable additional functionality but are **not** required
+for core operation or tests:
+
+- `transformers` – improved sentiment analysis models
+- `jupyter` – interactive notebooks for experiments
+- `gym` or `gymnasium` – reinforcement learning environments used by some
+  notebooks
 
 ## Development Setup
 
