@@ -2,6 +2,8 @@
 pandas
 playwright
 beautifulsoup4
+pydantic_ai
+openai
 
 # Development and testing
 flake8
