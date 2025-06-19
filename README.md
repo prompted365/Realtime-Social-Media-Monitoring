@@ -97,3 +97,8 @@ Run `flake8` followed by `pytest` before committing changes:
 flake8
 pytest
 ```
+
+## Development Setup
+
+This repository includes a `.gitignore` file that excludes typical temporary files such as `__pycache__/`, `*.db`, and `.env` entries. Ensure your local environment respects these rules to keep commits clean.
+
