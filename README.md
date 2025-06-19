@@ -89,8 +89,16 @@ Set the following variables before running the scrapers:
 - `TWITTER_PASSWORD` – corresponding password
 - `EMAIL_SENDER` – address used to send notification emails
 - `EMAIL_PASSWORD` – password for the sending account
+- `REQUESTY_BASE_URL` – base URL for the Requesty router (optional)
+- `REQUESTY_API_KEY` – API key for Requesty
 
 If these variables are missing, the Twitter and Facebook scrapers and the email sender raise a `ValueError`.
+
+### LLM Summarisation
+
+When `REQUESTY_BASE_URL` and `REQUESTY_API_KEY` are set, the orchestrator can call
+`analytics.llm_analysis.generate_summary` to produce a short summary of the scraped
+posts. The returned dataframe includes this summary under `df.attrs["summary"]`.
 
 ## Testing & Quality
 

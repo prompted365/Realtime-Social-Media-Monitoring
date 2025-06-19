@@ -1,7 +1,7 @@
 import asyncio
 import importlib
 import pkgutil
-from typing import Callable, Dict, List, Tuple
+from typing import Callable, Coroutine, Dict, List, Tuple
 
 import pandas as pd
 
@@ -35,8 +35,16 @@ class ScraperOrchestrator:
         return combined
 
     async def scrape_and_analyze(
-        self, query: str, limit: int, analyze: Callable[[pd.DataFrame], pd.DataFrame]
+        self,
+        query: str,
+        limit: int,
+        analyze: Callable[[pd.DataFrame], pd.DataFrame],
+        summarize: Callable[[str], Coroutine[None, None, str]] | None = None,
     ) -> pd.DataFrame:
         posts = await self.run(query, limit)
         df = pd.DataFrame(posts, columns=["source", "text"])
-        return analyze(df)
+        df = analyze(df)
+        if summarize is not None:
+            text = "\n".join(df["text"].tolist())
+            df.attrs["summary"] = await summarize(text)
+        return df
