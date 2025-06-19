@@ -86,8 +86,10 @@ Set the following variables before running the scrapers:
 
 - `TWITTER_USERNAME` – username or email used for login
 - `TWITTER_PASSWORD` – corresponding password
+- `EMAIL_SENDER` – address used to send notification emails
+- `EMAIL_PASSWORD` – password for the sending account
 
-If these variables are missing, the Twitter and Facebook scrapers raise a `ValueError`.
+If these variables are missing, the Twitter and Facebook scrapers and the email sender raise a `ValueError`.
 
 ## Testing & Quality
 
