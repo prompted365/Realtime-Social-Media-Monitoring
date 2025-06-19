@@ -102,7 +102,14 @@ posts. The returned dataframe includes this summary under `df.attrs["summary"]`.
 
 ## Testing & Quality
 
-Run `flake8` followed by `pytest` before committing changes:
+Before running the checks, install both the runtime and development
+dependencies:
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+```
+
+Then run `flake8` followed by `pytest`:
 
 ```bash
 flake8
