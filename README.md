@@ -80,6 +80,15 @@ Command Line Interface (CLI) - Can be implemented in GUI or Web-based interfaces
 
 - Sentiment Analysis Model: [Transformers documentation](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english)
 
+### Required Environment Variables
+
+Set the following variables before running the scrapers:
+
+- `TWITTER_USERNAME` – username or email used for login
+- `TWITTER_PASSWORD` – corresponding password
+
+If these variables are missing, the Twitter and Facebook scrapers raise a `ValueError`.
+
 ## Testing & Quality
 
 Run `flake8` followed by `pytest` before committing changes:
