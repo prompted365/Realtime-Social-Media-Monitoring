@@ -1,20 +1,24 @@
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from urllib.parse import quote
+import os
 import time
 import json
-from urllib.parse import quote
 
 
 def facebook(search, stored, no_post):
+    username = os.getenv("TWITTER_USERNAME")
+    password = os.getenv("TWITTER_PASSWORD")
+    if not username or not password:
+        raise ValueError("Twitter credentials not provided")
     starting_url = 'https://www.facebook.com/'
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
         page.goto(starting_url)
         page.wait_for_selector('input[name="email"]')
-        page.fill('input[name="email"]', 'kh708841@gmail.com')
-        page.fill('input[name="pass"]', 'C++program@123')
+        page.fill('input[name="email"]', username)
+        page.fill('input[name="pass"]', password)
         page.click('button[name="login"]')
         page.wait_for_load_state("networkidle")
         search = quote(search)

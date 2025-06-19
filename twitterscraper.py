@@ -1,13 +1,17 @@
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from urllib.parse import quote
+import os
 import time
 import json
-from urllib.parse import quote
 import threading
 
 def twitter(search, stored, no_post):
     search = quote(search)
+    username = os.getenv("TWITTER_USERNAME")
+    password = os.getenv("TWITTER_PASSWORD")
+    if not username or not password:
+        raise ValueError("Twitter credentials not provided")
     login_url = "https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoiZW4ifQ%3D%3D%22%7D"
 
     url = f"https://twitter.com/search?q={search}%20lang%3Aen%20until%3A2023-11-30%20since%3A2023-07-01%20-filter%3Alinks&src=recent_search_click&f=live"
@@ -19,18 +23,18 @@ def twitter(search, stored, no_post):
         page = p.chromium.launch().new_page()
         page.goto(login_url)
         page.wait_for_load_state("networkidle")
-        page.fill("input[name='text']", "kh708841@gmail.com")
+        page.fill("input[name='text']", username)
         page.keyboard.press("Enter")
         page.wait_for_load_state("networkidle")
         try:
-            page.fill('input[name="text"]', "@john85465")
+            page.fill('input[name="text"]', username)
             page.keyboard.press("Enter")
             page.wait_for_load_state("networkidle")
-            page.fill("input[name='password']", "C++program@123")
+            page.fill("input[name='password']", password)
             page.keyboard.press("Enter")
             page.wait_for_load_state("networkidle")
         except Exception as e:
-            page.fill("input[name='password']", "C++program@123")
+            page.fill("input[name='password']", password)
             page.keyboard.press("Enter")
             page.wait_for_load_state("networkidle")
 
@@ -54,7 +58,7 @@ def twitter(search, stored, no_post):
                 continue
         return stored
 
+# Example usage:
 # stored = []
-# search = "tcs"
-# twitter(search, stored)
+# twitter("tcs", stored, 5)
 # print(stored)
