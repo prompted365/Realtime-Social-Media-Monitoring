@@ -1,3 +1,5 @@
+# Root .gitignore for Realtime-Social-Media-Monitoring
+
 # Python artifacts
 __pycache__/
 *.py[cod]
@@ -25,3 +27,16 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Virtual environments
+venv/
+.env/
+env/
+.venv/
+
+# Log files
+logs/
+*.log
+
+# SQLite variants
+*.sqlite3
