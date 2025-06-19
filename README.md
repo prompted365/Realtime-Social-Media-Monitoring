@@ -102,5 +102,5 @@ pytest
 
 ## Development Setup
 
-This repository includes a `.gitignore` file that excludes typical temporary files such as `__pycache__/`, `*.db`, and `.env` entries. Ensure your local environment respects these rules to keep commits clean.
+A `.gitignore` file lives at the project root. It filters out `__pycache__/`, `*.db`, `.env`, virtual environment folders and typical editor artifacts. Make sure your environment honors these rules so only relevant source files are committed.
 
