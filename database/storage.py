@@ -12,9 +12,9 @@ def _connect(db_path: str = DB_PATH):
 def store_raw(table: str, rows: Iterable[Tuple[str, str]]) -> None:
     with _connect() as conn:
         cur = conn.cursor()
-        cur.execute(f"DROP TABLE IF EXISTS {table}")
         cur.execute(
-            f"CREATE TABLE {table} (id INTEGER PRIMARY KEY, source TEXT, text TEXT)"
+            f"CREATE TABLE IF NOT EXISTS {table} ("
+            "id INTEGER PRIMARY KEY, source TEXT, text TEXT)"
         )
         cur.executemany(f"INSERT INTO {table} (source, text) VALUES (?, ?)", rows)
         conn.commit()
