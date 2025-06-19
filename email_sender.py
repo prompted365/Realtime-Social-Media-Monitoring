@@ -1,3 +1,4 @@
+import os
 import smtplib
 import ssl
 from email.message import EmailMessage
@@ -5,9 +6,11 @@ from email.message import EmailMessage
 def send_email(rows, email_receiver, search):
 
 
-    # Define email sender and receiver
-    email_sender = ''
-    email_password = ''
+    # Define email sender and password from environment
+    email_sender = os.getenv("EMAIL_SENDER")
+    email_password = os.getenv("EMAIL_PASSWORD")
+    if not email_sender or not email_password:
+        raise ValueError("Email credentials not provided")
 
     # Set the subject and body of the email
     subject = 'Sentiment Analysis Report For Your Brand'
