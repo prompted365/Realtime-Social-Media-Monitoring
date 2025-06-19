@@ -10,13 +10,20 @@ def _connect(db_path: str = DB_PATH):
 
 
 def store_raw(table: str, rows: Iterable[Tuple[str, str]]) -> None:
+    """Persist raw scraped posts.
+
+    The table is created on first use and subsequent calls simply
+    append new records without altering existing rows.
+    """
     with _connect() as conn:
         cur = conn.cursor()
         cur.execute(
             f"CREATE TABLE IF NOT EXISTS {table} ("
             "id INTEGER PRIMARY KEY, source TEXT, text TEXT)"
         )
-        cur.executemany(f"INSERT INTO {table} (source, text) VALUES (?, ?)", rows)
+        cur.executemany(
+            f"INSERT INTO {table} (source, text) VALUES (?, ?)", rows
+        )
         conn.commit()
 
 
