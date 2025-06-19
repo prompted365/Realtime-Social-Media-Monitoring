@@ -1,0 +1,27 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment files
+.env
+.env.*
+
+# Databases
+*.db
+*.sqlite*
+*.db-journal
+
+# IDE/Editor directories
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Misc
+.DS_Store
+*.egg-info/
+dist/
+build/
